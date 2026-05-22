@@ -34,12 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const loader = $('.loader');
   if (loader) {
     window.addEventListener('load', () => {
+      loader.classList.add('hidden');
       loader.style.opacity = '0';
+      loader.style.visibility = 'hidden';
       loader.style.pointerEvents = 'none';
       setTimeout(() => {
         loader.style.display = 'none';
         document.body.classList.add('loaded');
-      }, 500);
+      }, 600);
     });
   } else {
     document.body.classList.add('loaded');

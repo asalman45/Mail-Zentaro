@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   ZENTARO v5.1 — Editorial + Interactive
+   ZENTARO v5 — Clean Editorial Script
    ═══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   const $ = (s, p) => (p || document).querySelector(s);
@@ -14,18 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { if (loader) loader.classList.add('done'); }, 3000);
   }
 
-  // 2. NAVBAR + SCROLL PROGRESS
+  // 2. NAVBAR
   const nav = $('#nav');
-  const prog = $('#scroll-progress');
-  const onScroll = () => {
-    if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
-    if (prog) {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      prog.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
-    }
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  if (nav) {
+    const tick = () => nav.classList.toggle('scrolled', window.scrollY > 50);
+    window.addEventListener('scroll', tick, { passive: true });
+    tick();
+  }
 
   // 3. MOBILE MENU
   const burger = $('.hamburger');
@@ -161,93 +156,5 @@ document.addEventListener('DOMContentLoaded', () => {
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  // 12. CURSOR GLOW on feature cards
-  $$('.feat-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
-
-  // 13. HERO PARALLAX
-  const heroBike = $('.hero-bike img');
-  const heroInner = $('.hero-inner');
-  if (heroBike || heroInner) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY < window.innerHeight) {
-        const ratio = window.scrollY / window.innerHeight;
-        if (heroBike) heroBike.style.transform = `translateY(${ratio * 40}px)`;
-        if (heroInner) heroInner.style.opacity = 1 - ratio * 1.2;
-      }
-    }, { passive: true });
-  }
-
-  // 14. HERO TITLE WORD ANIMATION
-  const heroTitle = $('.hero-title');
-  if (heroTitle) {
-    const nodes = heroTitle.childNodes;
-    let delay = 0.3;
-    nodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const words = node.textContent.split(/( )/);
-        const frag = document.createDocumentFragment();
-        words.forEach(w => {
-          if (w === ' ' || w === '') { frag.appendChild(document.createTextNode(' ')); return; }
-          const s = document.createElement('span');
-          s.textContent = w;
-          s.style.cssText = `display:inline-block;opacity:0;transform:translateY(40px);animation:wordIn .6s ${delay}s forwards var(--ease)`;
-          delay += 0.08;
-          frag.appendChild(s);
-        });
-        node.replaceWith(frag);
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        node.style.cssText = `display:inline-block;opacity:0;transform:translateY(40px);animation:wordIn .6s ${delay}s forwards var(--ease)`;
-        delay += 0.15;
-      }
-    });
-    if (!$('#word-anim')) {
-      const s = document.createElement('style');
-      s.id = 'word-anim';
-      s.textContent = '@keyframes wordIn{to{opacity:1;transform:translateY(0)}}';
-      document.head.appendChild(s);
-    }
-  }
-
-  // 15. PRODUCT CARD HOVER GLOW TRACKING
-  $$('.prod-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width * 100).toFixed(0);
-      const y = ((e.clientY - r.top) / r.height * 100).toFixed(0);
-      card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(225,29,72,.02), transparent 50%)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.background = ''; });
-  });
-
-  // 16. MARQUEE PAUSE ON HOVER
-  const marquee = $('.marquee-track');
-  if (marquee) {
-    marquee.addEventListener('mouseenter', () => { marquee.style.animationPlayState = 'paused'; });
-    marquee.addEventListener('mouseleave', () => { marquee.style.animationPlayState = 'running'; });
-  }
-
-  // 17. SPEC BOX HOVER EFFECT
-  $$('.spec-box').forEach(box => {
-    box.addEventListener('mouseenter', () => {
-      box.style.borderColor = 'rgba(225,29,72,.15)';
-      box.style.background = 'var(--bg2)';
-    });
-    box.addEventListener('mouseleave', () => {
-      box.style.borderColor = '';
-      box.style.background = '';
-    });
-  });
-
-  // 18. IMAGE TRANSITION on product images
-  $$('.prod-card-top img, .detail-visual img').forEach(img => {
-    img.style.transition = 'opacity .4s, transform .6s var(--ease)';
-  });
-
-  console.log('%c⚡ ZENTARO%c v5.1 — Editorial + Interactive', 'background:#E11D48;color:#fff;font-weight:900;padding:4px 10px', 'background:#18181B;color:#A1A1AA;padding:4px 10px');
+  console.log('%c⚡ ZENTARO%c v5.0 — Editorial', 'background:#E11D48;color:#fff;font-weight:900;padding:4px 10px', 'background:#18181B;color:#A1A1AA;padding:4px 10px');
 });

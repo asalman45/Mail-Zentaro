@@ -624,6 +624,13 @@ section { padding: 6rem 0; position: relative; }
 .back-to-top.visible { opacity: 1; pointer-events: auto; }
 .back-to-top:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
 
+/* ═══════════ MISSING RULES FIX ═══════════ */
+.hero-text { position: relative; z-index: 2; }
+.footer-brand { display: flex; flex-direction: column; }
+.footer-links { display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-links a { font-size: 0.9rem; color: var(--text-secondary); transition: color 0.3s, transform 0.3s; display: inline-block; }
+.footer-links a:hover { color: var(--primary); transform: translateX(4px); }
+
 /* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 1024px) {
   .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -671,3 +678,4 @@ section { padding: 6rem 0; position: relative; }
   .reveal, .slide-in-left, .slide-in-right { opacity: 1; transform: none; }
   .float-animation, .whatsapp-float { animation: none; }
 }
+

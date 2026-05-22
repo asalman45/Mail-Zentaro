@@ -4,736 +4,541 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zentaro Pakistan | Premium EV & Petrol Bikes & Scooters</title>
-    <meta name="description" content="Discover Zentaro — Pakistan's rising motorcycle brand offering powerful 125cc petrol bikes and 2000W electric scooters. Built for performance, designed for Pakistan.">
-    <meta name="keywords" content="Zentaro, electric scooter Pakistan, 125cc bike Pakistan, EV bike, electric motorcycle, Zentaro ZT 125, petrol bike Pakistan">
-    <meta name="author" content="Zentaro Pakistan">
-    <link rel="canonical" href="https://zentaro.pk">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Zentaro Pakistan | Premium EV & Petrol Bikes & Scooters">
-    <meta property="og:description" content="Pakistan's rising motorcycle brand — powerful 125cc petrol bikes & 2000W electric scooters. Ride the future.">
+    <meta name="description" content="Pakistan's rising motorcycle brand — powerful 125cc petrol bikes & 2000W electric scooters. Ride the future with Zentaro.">
+    <meta property="og:title" content="Zentaro Pakistan | Premium Bikes & Scooters">
+    <meta property="og:description" content="Powerful 125cc petrol bikes & 2000W electric scooters engineered for Pakistan.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zentaro.pk">
-    <meta property="og:site_name" content="Zentaro Pakistan">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Zentaro Pakistan | Premium Bikes & Scooters">
-    <meta name="twitter:description" content="Discover the future of riding with Zentaro's 125cc bikes and 2000W electric scooters.">
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
-    <!-- ════════════════════ LOADER ════════════════════ -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">ZENTARO</div>
-            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+<!-- ═══ LOADER ═══ -->
+<div id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">ZENTARO</div>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="nav">
+    <div class="wrap nav-inner">
+        <a href="#hero" class="nav-logo">ZENTARO</a>
+        <ul class="nav-menu">
+            <li><a href="#hero" class="nav-link active">Home</a></li>
+            <li><a href="#products" class="nav-link">Products</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="#contact" class="btn btn-accent">Book Now</a>
+        </div>
+        <button class="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu">
+    <a href="#hero" class="mob-link">Home</a>
+    <a href="#products" class="mob-link">Products</a>
+    <a href="#features" class="mob-link">Features</a>
+    <a href="#about" class="mob-link">About</a>
+    <a href="#contact" class="mob-link">Contact</a>
+    <a href="#contact" class="btn btn-accent" style="margin-top:12px">Book Now</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+    <div class="hero-bg">
+        <img src="images/hero-bg.png" alt="" loading="eager">
+    </div>
+    <div class="wrap hero-inner">
+        <div class="hero-text reveal">
+            <span class="tag">⚡ Pakistan's Rising Motorcycle Brand</span>
+            <h1 class="hero-title">Ride the Future.<br><span class="grad">Ride Zentaro.</span></h1>
+            <p class="hero-desc">From the powerful ZT 125 petrol motorcycle to the eco-friendly ZE 2000 electric scooter — performance, style, and innovation for Pakistan's roads.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-accent">
+                    <span>Explore Products</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 7h10v10"/><path d="M7 17L17 7"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-outline">Book a Test Ride</a>
+            </div>
+        </div>
+        <div class="hero-visual reveal">
+            <img src="images/zt125-red.png" alt="Zentaro ZT 125 Motorcycle" id="hero-bike">
         </div>
     </div>
+</section>
 
-    <!-- ════════════════════ NAVBAR ════════════════════ -->
-    <nav id="navbar">
-        <div class="container">
-            <a href="#hero" class="navbar-logo">
-                <span class="logo-text">ZENTARO</span>
-            </a>
+<!-- Stats Strip -->
+<div class="wrap">
+    <div class="hero-stats reveal">
+        <div class="stat">
+            <span class="stat-val counter" data-target="2000" data-suffix="W">0</span>
+            <span class="stat-label">Motor Power</span>
+        </div>
+        <div class="stat">
+            <span class="stat-val counter" data-target="125" data-suffix="cc">0</span>
+            <span class="stat-label">Engine</span>
+        </div>
+        <div class="stat">
+            <span class="stat-val counter" data-target="80" data-suffix=" km/h">0</span>
+            <span class="stat-label">Top Speed</span>
+        </div>
+        <div class="stat">
+            <span class="stat-val counter" data-target="0" data-suffix="">0</span>
+            <span class="stat-label">EV Emissions</span>
+        </div>
+    </div>
+</div>
 
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#hero" class="nav-link active">Home</a></li>
-                <li><a href="#products" class="nav-link">Products</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-
-            <a href="#contact" class="cta-primary nav-cta">Book Now</a>
-
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+<!-- ═══ PRODUCTS ═══ -->
+<section id="products">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="tag">Our Lineup</span>
+            <h2 class="sec-title">Two Categories, One <span class="grad">Promise.</span></h2>
+            <p class="sec-sub">Unmatched performance engineered for Pakistan's roads.</p>
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu">
-            <ul class="mobile-nav-links">
-                <li><a href="#hero" class="mobile-nav-link">Home</a></li>
-                <li><a href="#products" class="mobile-nav-link">Products</a></li>
-                <li><a href="#features" class="mobile-nav-link">Features</a></li>
-                <li><a href="#about" class="mobile-nav-link">About</a></li>
-                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-                <li><a href="#contact" class="cta-primary mobile-cta">Book Now</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- ════════════════════ HERO ════════════════════ -->
-    <section id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-badge reveal">
-                    ⚡ Pakistan's Rising Motorcycle Brand
+        <div class="prod-grid">
+            <!-- ZT 125 -->
+            <div class="prod-card reveal">
+                <div class="prod-img">
+                    <span class="prod-badge tag-blue tag">Petrol 125cc</span>
+                    <div class="prod-colors">
+                        <span class="cdot red on" data-color="red" data-product="zt125"></span>
+                        <span class="cdot black" data-color="black" data-product="zt125"></span>
+                        <span class="cdot white" data-color="white" data-product="zt125"></span>
+                    </div>
+                    <img src="images/zt125-red.png" alt="Zentaro ZT 125" id="zt125-card-img">
                 </div>
-                <h1 id="hero-title" class="hero-title">
-                    Ride the <span class="gradient-text">Future.</span><br>
-                    Ride <span class="gradient-text">Zentaro.</span>
-                </h1>
-                <p class="hero-subtitle reveal" data-delay="200">
-                    From the powerful ZT 125 petrol motorcycle to the eco-friendly ZE 2000 electric scooter — Zentaro delivers performance, style, and innovation for Pakistan's roads.
-                </p>
-                <div class="hero-cta-group reveal" data-delay="400">
-                    <a href="#products" class="cta-primary">
-                        <span>Explore Products</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                    <a href="#contact" class="cta-secondary">
-                        <span>Book a Test Ride</span>
-                    </a>
+                <div class="prod-info">
+                    <h3 class="prod-name">Zentaro ZT 125</h3>
+                    <p class="prod-tagline">125cc Petrol Motorcycle — Power Meets Style</p>
+                    <div class="prod-specs">
+                        <div class="ps"><span class="ps-val">125cc</span><span class="ps-lbl">Engine</span></div>
+                        <div class="ps"><span class="ps-val">80 km/h</span><span class="ps-lbl">Top Speed</span></div>
+                        <div class="ps"><span class="ps-val">4-Stroke</span><span class="ps-lbl">Type</span></div>
+                    </div>
+                    <a href="#zt-section" class="btn btn-accent">View Details</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper reveal" data-delay="300">
-                <img src="images/zt125-red.png" alt="Zentaro ZT 125 Red Motorcycle" class="hero-product-image float-animation">
-            </div>
-        </div>
 
-        <!-- Stats Bar -->
-        <div class="hero-stats reveal" data-delay="600">
-            <div class="stat-item">
-                <span class="stat-value"><span class="counter" data-target="2000" data-suffix="W">0</span></span>
-                <span class="stat-label">Motor Power</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-value"><span class="counter" data-target="125" data-suffix="cc">0</span></span>
-                <span class="stat-label">Engine Capacity</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-value"><span class="counter" data-target="80" data-suffix=" km/h">0</span></span>
-                <span class="stat-label">Top Speed</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-value"><span class="counter" data-target="0" data-suffix="">Zero</span></span>
-                <span class="stat-label">EV Emissions</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ PRODUCTS ════════════════════ -->
-    <section id="products">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="hero-badge" style="margin-bottom: 1rem">Our Lineup</span>
-                <h2 class="section-title center">Choose Your <span class="gradient-text">Perfect Ride</span></h2>
-                <p class="section-subtitle center">Two categories, one promise — unmatched performance on Pakistan's roads.</p>
-            </div>
-
-            <div class="products-grid">
-                <!-- ZT 125 Card -->
-                <div class="product-card reveal" data-delay="100">
-                    <div class="product-card-badge badge-petrol">Petrol</div>
-                    <div class="product-card-image-wrapper">
-                        <img src="images/zt125-red.png" alt="Zentaro ZT 125" class="product-card-image" id="zt125-card-image">
+            <!-- ZE 2000 -->
+            <div class="prod-card reveal">
+                <div class="prod-img">
+                    <span class="prod-badge tag-green tag">Electric 2000W</span>
+                    <div class="prod-colors">
+                        <span class="cdot red on" data-color="red" data-product="ze2000"></span>
+                        <span class="cdot blue" data-color="blue" data-product="ze2000"></span>
                     </div>
-                    <div class="product-card-colors">
-                        <button class="color-dot red active" data-color="red" data-product="zt125-card" aria-label="Red color"></button>
-                        <button class="color-dot black" data-color="black" data-product="zt125-card" aria-label="Black color"></button>
-                        <button class="color-dot white" data-color="white" data-product="zt125-card" aria-label="White color"></button>
-                    </div>
-                    <h3 class="product-card-name">Zentaro ZT 125</h3>
-                    <p class="product-card-tagline">125cc Petrol Motorcycle</p>
-                    <div class="product-card-specs">
-                        <div class="spec-mini">
-                            <span class="spec-mini-value">125cc</span>
-                            <span class="spec-mini-label">Engine</span>
-                        </div>
-                        <div class="spec-mini">
-                            <span class="spec-mini-value">9.5 HP</span>
-                            <span class="spec-mini-label">Power</span>
-                        </div>
-                        <div class="spec-mini">
-                            <span class="spec-mini-value">45 km/l</span>
-                            <span class="spec-mini-label">Mileage</span>
-                        </div>
-                    </div>
-                    <a href="#zt125-detail" class="cta-primary product-card-btn">
-                        <span>View Details</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
+                    <img src="images/scooter-red.png" alt="Zentaro ZE 2000" id="ze2000-card-img">
                 </div>
-
-                <!-- ZE 2000 Card -->
-                <div class="product-card reveal" data-delay="300">
-                    <div class="product-card-badge badge-ev">Electric</div>
-                    <div class="product-card-image-wrapper">
-                        <img src="images/scooter-red.png" alt="Zentaro ZE 2000 Electric Scooter" class="product-card-image" id="ze2000-card-image">
+                <div class="prod-info">
+                    <h3 class="prod-name">Zentaro ZE 2000</h3>
+                    <p class="prod-tagline">2000W Electric Scooter — Green & Powerful</p>
+                    <div class="prod-specs">
+                        <div class="ps"><span class="ps-val">2000W</span><span class="ps-lbl">Motor</span></div>
+                        <div class="ps"><span class="ps-val">60 km/h</span><span class="ps-lbl">Top Speed</span></div>
+                        <div class="ps"><span class="ps-val">80 km</span><span class="ps-lbl">Range</span></div>
                     </div>
-                    <div class="product-card-colors">
-                        <button class="color-dot red active" data-color="red" data-product="ze2000-card" aria-label="Red color"></button>
-                        <button class="color-dot blue" data-color="blue" data-product="ze2000-card" aria-label="Blue color"></button>
-                    </div>
-                    <h3 class="product-card-name">Zentaro ZE 2000</h3>
-                    <p class="product-card-tagline">2000W Electric Scooter</p>
-                    <div class="product-card-specs">
-                        <div class="spec-mini">
-                            <span class="spec-mini-value">2000W</span>
-                            <span class="spec-mini-label">Motor</span>
-                        </div>
-                        <div class="spec-mini">
-                            <span class="spec-mini-value">80 km</span>
-                            <span class="spec-mini-label">Range</span>
-                        </div>
-                        <div class="spec-mini">
-                            <span class="spec-mini-value">65 km/h</span>
-                            <span class="spec-mini-label">Speed</span>
-                        </div>
-                    </div>
-                    <a href="#ze2000-detail" class="cta-primary product-card-btn">
-                        <span>View Details</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
+                    <a href="#ze-section" class="btn btn-accent">View Details</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ════════════════════ ZT 125 DETAIL ════════════════════ -->
-    <section id="zt125-detail">
-        <div class="container">
-            <div class="product-detail-layout">
-                <div class="product-detail-image reveal slide-in-left">
-                    <img src="images/zt125-red.png" alt="Zentaro ZT 125 Motorcycle" id="zt125-image">
-                </div>
-                <div class="product-detail-info reveal slide-in-right">
-                    <span class="section-tag">Petrol Motorcycle</span>
-                    <h2 class="product-detail-title">Zentaro <span class="gradient-text">ZT 125</span></h2>
-                    <p class="product-detail-desc">
-                        The Zentaro ZT 125 is built for the Pakistani rider who demands reliability, power, and style.
-                        With a robust 125cc OHV engine, alloy wheels, disc brakes, and bold graphics — this bike delivers
-                        where it matters most.
-                    </p>
-
-                    <div class="color-picker">
-                        <span class="color-picker-label">Available Colors:</span>
-                        <div class="color-picker-options">
-                            <button class="color-btn active" data-color="red" data-target="zt125">
-                                <span class="color-swatch" style="background: #C62828"></span>
-                                Red
-                            </button>
-                            <button class="color-btn" data-color="black" data-target="zt125">
-                                <span class="color-swatch" style="background: #1a1a1a"></span>
-                                Black
-                            </button>
-                            <button class="color-btn" data-color="white" data-target="zt125">
-                                <span class="color-swatch" style="background: #f5f5f5"></span>
-                                White
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="M9 9h6v6"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">125cc</span>
-                                <span class="spec-label">Engine Capacity</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">9.5 HP</span>
-                                <span class="spec-label">Max Power</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">4-Stroke OHV</span>
-                                <span class="spec-label">Engine Type</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">80 km/h</span>
-                                <span class="spec-label">Top Speed</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V8l9-6 9 6v14"/><path d="M9 22V12h6v10"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">45 km/l</span>
-                                <span class="spec-label">Fuel Economy</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m-7-9h6m6 0h6"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">Disc / Drum</span>
-                                <span class="spec-label">Brakes (F/R)</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#contact" class="cta-primary">
-                        <span>Book Now — ZT 125</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                </div>
+<!-- ═══ ZT 125 DETAIL ═══ -->
+<section id="zt-section" class="detail">
+    <div class="wrap">
+        <div class="detail-grid">
+            <div class="detail-img reveal">
+                <img src="images/zt125-red.png" alt="ZT 125" id="zt125-detail-img">
             </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ ZE 2000 DETAIL ════════════════════ -->
-    <section id="ze2000-detail">
-        <div class="container">
-            <div class="product-detail-layout">
-                <div class="product-detail-info reveal slide-in-left">
-                    <span class="section-tag tag-ev">⚡ Electric Vehicle</span>
-                    <h2 class="product-detail-title">Zentaro <span class="gradient-text">ZE 2000</span></h2>
-                    <p class="product-detail-desc">
-                        Go green without compromising performance. The Zentaro ZE 2000 electric scooter features
-                        a powerful 2000W brushless motor, long-range lithium battery, and sleek aerodynamic design —
-                        perfect for Pakistan's urban commute.
-                    </p>
-
-                    <div class="color-picker">
-                        <span class="color-picker-label">Available Colors:</span>
-                        <div class="color-picker-options">
-                            <button class="color-btn active" data-color="red" data-target="ze2000">
-                                <span class="color-swatch" style="background: #C62828"></span>
-                                Red
-                            </button>
-                            <button class="color-btn" data-color="blue" data-target="ze2000">
-                                <span class="color-swatch" style="background: #1565C0"></span>
-                                Blue
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">2000W</span>
-                                <span class="spec-label">Brushless Motor</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">72V 32Ah</span>
-                                <span class="spec-label">Lithium Battery</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M12 7v5l3 3"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">80 km</span>
-                                <span class="spec-label">Range per Charge</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">65 km/h</span>
-                                <span class="spec-label">Top Speed</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">4-6 Hours</span>
-                                <span class="spec-label">Charging Time</span>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
-                            </div>
-                            <div class="spec-content">
-                                <span class="spec-value">Zero</span>
-                                <span class="spec-label">Emissions</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#contact" class="cta-primary">
-                        <span>Book Now — ZE 2000</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                </div>
-                <div class="product-detail-image reveal slide-in-right">
-                    <img src="images/scooter-red.png" alt="Zentaro ZE 2000 Electric Scooter" id="ze2000-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ FEATURES ════════════════════ -->
-    <section id="features">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">Why Zentaro</span>
-                <h2 class="section-title">Built Different. <span class="gradient-text">Rides Better.</span></h2>
-                <p class="section-subtitle">Every Zentaro vehicle is engineered for Pakistan's unique riding conditions.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card reveal" data-delay="0">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    </div>
-                    <h3 class="feature-title">Powerful Performance</h3>
-                    <p class="feature-desc">Whether it's the 125cc OHV engine or the 2000W brushless motor — Zentaro delivers raw, responsive power for every road.</p>
-                </div>
-
-                <div class="feature-card reveal" data-delay="100">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/></svg>
-                    </div>
-                    <h3 class="feature-title">Long Battery Life</h3>
-                    <p class="feature-desc">Our EV scooters pack high-capacity lithium batteries that deliver up to 80 km on a single charge — commute worry-free.</p>
-                </div>
-
-                <div class="feature-card reveal" data-delay="200">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <h3 class="feature-title">Built for Pakistan</h3>
-                    <p class="feature-desc">Tested on Pakistani roads, tuned for local conditions. From Karachi heat to Islamabad hills — Zentaro handles it all.</p>
-                </div>
-
-                <div class="feature-card reveal" data-delay="300">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1v22M5 8l7-7 7 7M5 16l7 7 7-7"/></svg>
-                    </div>
-                    <h3 class="feature-title">Affordable Pricing</h3>
-                    <p class="feature-desc">Premium features without the premium price tag. Zentaro brings world-class engineering at prices that make sense for Pakistan.</p>
-                </div>
-
-                <div class="feature-card reveal" data-delay="400">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                    </div>
-                    <h3 class="feature-title">Service Network</h3>
-                    <p class="feature-desc">Growing dealer and service network across Pakistan ensures you're never far from expert maintenance and genuine parts.</p>
-                </div>
-
-                <div class="feature-card reveal" data-delay="500">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-3.866 4.477-7 10-7s10 3.134 10 7-4.477 7-10 7c-1.957 0-3.78-.39-5.35-1.076L2 20l1.338-3.346C2.492 15.26 2 13.681 2 12z"/></svg>
-                    </div>
-                    <h3 class="feature-title">Eco-Friendly Future</h3>
-                    <p class="feature-desc">With our electric lineup, join the movement towards zero-emission transportation. Save fuel costs, save the planet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ ABOUT ════════════════════ -->
-    <section id="about">
-        <div class="container">
-            <div class="about-layout">
-                <div class="about-text reveal slide-in-left">
-                    <span class="section-tag">Our Story</span>
-                    <h2 class="section-title">Pakistan's Next-Gen <span class="gradient-text">Motorcycle Brand</span></h2>
-                    <p class="about-desc">
-                        Zentaro was born from a vision — to bring world-class motorcycle engineering to Pakistan
-                        at prices that make sense. We believe every Pakistani rider deserves a machine that's
-                        powerful, reliable, and stunning to look at.
-                    </p>
-                    <p class="about-desc">
-                        From our petrol-powered ZT 125 that dominates city streets and highways, to our
-                        revolutionary ZE 2000 electric scooter that's redefining urban mobility — Zentaro
-                        is here to change how Pakistan rides.
-                    </p>
-
-                    <div class="about-stats">
-                        <div class="stats-counter">
-                            <span class="counter-number counter" data-target="2" data-suffix="+">0</span>
-                            <span class="counter-label">Product Lines</span>
-                        </div>
-                        <div class="stats-counter">
-                            <span class="counter-number counter" data-target="5" data-suffix="">0</span>
-                            <span class="counter-label">Color Options</span>
-                        </div>
-                        <div class="stats-counter">
-                            <span class="counter-number counter" data-target="100" data-suffix="%">0</span>
-                            <span class="counter-label">Quality Tested</span>
-                        </div>
-                    </div>
-
-                    <div class="trust-badges">
-                        <div class="trust-badge">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            Quality Assured
-                        </div>
-                        <div class="trust-badge">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                            After-Sales Support
-                        </div>
-                        <div class="trust-badge">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                            Made for Pakistan
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-image reveal slide-in-right">
-                    <img src="images/about-lifestyle.png" alt="Zentaro motorcycle lifestyle" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ TESTIMONIALS ════════════════════ -->
-    <section id="testimonials">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">Reviews</span>
-                <h2 class="section-title">What Riders <span class="gradient-text">Are Saying</span></h2>
-            </div>
-
-            <div class="testimonials-track">
-                <div class="testimonial-card reveal" data-delay="0">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The ZT 125 is a beast! Smooth ride, powerful engine, and the alloy wheels look amazing. Best bike in this price range."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AH</div>
-                        <div>
-                            <span class="testimonial-name">Ahmed Hassan</span>
-                            <span class="testimonial-city">Lahore</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal" data-delay="150">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Switched to the ZE 2000 electric scooter and saving thousands on fuel every month. The range is impressive for daily commute!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">SR</div>
-                        <div>
-                            <span class="testimonial-name">Sana Rizwan</span>
-                            <span class="testimonial-city">Karachi</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal" data-delay="300">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Build quality of the ZT 125 is outstanding. Chrome finish, disc brakes, and the paint job — Zentaro knows how to make bikes."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">UK</div>
-                        <div>
-                            <span class="testimonial-name">Usman Khan</span>
-                            <span class="testimonial-city">Islamabad</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal" data-delay="450">
-                    <div class="testimonial-stars">★★★★☆</div>
-                    <p class="testimonial-text">"The electric scooter is perfect for Karachi traffic. Zero noise, zero emissions, and the design turns heads everywhere I go."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">FM</div>
-                        <div>
-                            <span class="testimonial-name">Fatima Malik</span>
-                            <span class="testimonial-city">Karachi</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ CONTACT ════════════════════ -->
-    <section id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info reveal slide-in-left">
-                    <span class="section-tag">Get in Touch</span>
-                    <h2 class="section-title">Ready to <span class="gradient-text">Ride?</span></h2>
-                    <p class="contact-desc">Book a test ride, become a dealer, or just say hello. We'd love to hear from you.</p>
-
-                    <div class="contact-methods">
-                        <a href="https://wa.me/923000000000?text=Hi%20Zentaro!%20I'm%20interested%20in%20your%20bikes." class="contact-method whatsapp-method" target="_blank" rel="noopener">
-                            <div class="contact-method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            </div>
-                            <div>
-                                <span class="contact-method-title">WhatsApp Us</span>
-                                <span class="contact-method-value">Quick Response Guaranteed</span>
-                            </div>
-                        </a>
-
-                        <div class="contact-method">
-                            <div class="contact-method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                            </div>
-                            <div>
-                                <span class="contact-method-title">Call Us</span>
-                                <span class="contact-method-value">+92 300 0000000</span>
-                            </div>
-                        </div>
-
-                        <div class="contact-method">
-                            <div class="contact-method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            </div>
-                            <div>
-                                <span class="contact-method-title">Email</span>
-                                <span class="contact-method-value">info@zentaro.pk</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form-wrapper reveal slide-in-right">
-                    <form id="contact-form" class="contact-form">
-                        <h3 class="form-title">Book a Test Ride</h3>
-                        <div class="form-group">
-                            <input type="text" id="form-name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="form-phone" name="phone" placeholder="Phone Number (03XX-XXXXXXX)" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="form-city" name="city" placeholder="Your City" required>
-                        </div>
-                        <div class="form-group">
-                            <select id="form-product" name="product" required>
-                                <option value="" disabled selected>Interested In...</option>
-                                <option value="ZT 125 - Petrol Bike">Zentaro ZT 125 — Petrol Bike</option>
-                                <option value="ZE 2000 - Electric Scooter">Zentaro ZE 2000 — Electric Scooter</option>
-                                <option value="Both">Both Products</option>
-                                <option value="Dealership">Become a Dealer</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="form-message" name="message" placeholder="Any message? (optional)" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="cta-primary form-submit">
-                            <span>Send Inquiry</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <div class="detail-info reveal">
+                <span class="tag tag-blue">Petrol Motorcycle</span>
+                <h2 class="detail-title">Zentaro <span class="grad">ZT 125</span></h2>
+                <p class="detail-desc">Built for the Pakistani rider who demands reliability, power, and style. A robust 125cc OHV engine, alloy wheels, disc brakes, and bold graphics — this bike delivers where it matters most.</p>
+                <div class="color-pick">
+                    <div class="color-pick-label">Select Color</div>
+                    <div class="color-btns">
+                        <button class="cbtn on" data-color="red" data-target="zt125">
+                            <span class="cbtn-dot" style="background:#DC2626"></span> Red
                         </button>
-                        <div id="form-success" class="form-success" style="display: none;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                            <span>Thank you! We'll get back to you shortly.</span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════ FOOTER ════════════════════ -->
-    <footer id="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <span class="footer-logo">ZENTARO</span>
-                    <p class="footer-tagline">Pakistan's rising motorcycle brand. Petrol power meets electric innovation.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="YouTube">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="TikTok">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.11V9a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.27a6.34 6.34 0 0 0 6.33 6.33 6.34 6.34 0 0 0 6.34-6.34V8.69a8.27 8.27 0 0 0 4.52 1.34v-3.5a4.85 4.85 0 0 1-.6.16z"/></svg>
-                        </a>
+                        <button class="cbtn" data-color="black" data-target="zt125">
+                            <span class="cbtn-dot" style="background:#171717"></span> Black
+                        </button>
+                        <button class="cbtn" data-color="white" data-target="zt125">
+                            <span class="cbtn-dot" style="background:#F5F5F5"></span> White
+                        </button>
                     </div>
                 </div>
-
-                <div class="footer-column">
-                    <h4>Products</h4>
-                    <ul class="footer-links">
-                        <li><a href="#zt125-detail">Zentaro ZT 125</a></li>
-                        <li><a href="#ze2000-detail">Zentaro ZE 2000</a></li>
-                        <li><a href="#products">All Products</a></li>
-                    </ul>
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <div><span class="spec-val">125cc</span><span class="spec-lbl">Engine</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <div><span class="spec-val">4-Stroke OHV</span><span class="spec-lbl">Type</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
+                        <div><span class="spec-val">80 km/h</span><span class="spec-lbl">Top Speed</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4m-9-9h4m14 0h4"/></svg>
+                        <div><span class="spec-val">Disc + Drum</span><span class="spec-lbl">Brakes</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+                        <div><span class="spec-val">Alloy</span><span class="spec-lbl">Wheels</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <div><span class="spec-val">Kick + Self</span><span class="spec-lbl">Start</span></div>
+                    </div>
                 </div>
-
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#features">Why Zentaro</a></li>
-                        <li><a href="#testimonials">Reviews</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="#contact">Book a Test Ride</a></li>
-                        <li><a href="#contact">Become a Dealer</a></li>
-                        <li><a href="#contact">Service Centers</a></li>
-                        <li><a href="#contact">Warranty Info</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Zentaro Pakistan. All rights reserved.</p>
-                <p>Designed with ⚡ for Pakistan's roads.</p>
+                <a href="#contact" class="btn btn-accent">Book Now — ZT 125</a>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- ════════════════════ FLOATING ELEMENTS ════════════════════ -->
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/923000000000?text=Hi%20Zentaro!%20I'm%20interested%20in%20your%20bikes." class="whatsapp-btn whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
+<!-- ═══ ZE 2000 DETAIL ═══ -->
+<section id="ze-section" class="detail">
+    <div class="wrap">
+        <div class="detail-grid">
+            <div class="detail-info reveal">
+                <span class="tag tag-green">Electric Scooter</span>
+                <h2 class="detail-title">Zentaro <span class="grad">ZE 2000</span></h2>
+                <p class="detail-desc">Go green without compromising performance. A powerful 2000W brushless motor, long-range lithium battery, and sleek aerodynamic design — perfect for Pakistan's urban commute.</p>
+                <div class="color-pick">
+                    <div class="color-pick-label">Select Color</div>
+                    <div class="color-btns">
+                        <button class="cbtn on" data-color="red" data-target="ze2000">
+                            <span class="cbtn-dot" style="background:#DC2626"></span> Red
+                        </button>
+                        <button class="cbtn" data-color="blue" data-target="ze2000">
+                            <span class="cbtn-dot" style="background:#2563EB"></span> Blue
+                        </button>
+                    </div>
+                </div>
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <div><span class="spec-val">2000W</span><span class="spec-lbl">Motor</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+                        <div><span class="spec-val">Lithium 60V</span><span class="spec-lbl">Battery</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <div><span class="spec-val">60 km/h</span><span class="spec-lbl">Top Speed</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div><span class="spec-val">80 km</span><span class="spec-lbl">Range</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div><span class="spec-val">Zero</span><span class="spec-lbl">Emissions</span></div>
+                    </div>
+                    <div class="spec-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+                        <div><span class="spec-val">Brushless</span><span class="spec-lbl">Motor Type</span></div>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-accent">Book Now — ZE 2000</a>
+            </div>
+            <div class="detail-img reveal">
+                <img src="images/scooter-red.png" alt="ZE 2000" id="ze2000-detail-img">
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="tag">Why Zentaro</span>
+            <h2 class="sec-title">Built Different. <span class="grad">Rides Better.</span></h2>
+            <p class="sec-sub">Every Zentaro vehicle is engineered for Pakistan's unique riding conditions.</p>
+        </div>
+        <div class="feat-grid">
+            <div class="feat-card reveal">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <h3 class="feat-name">Powerful Performance</h3>
+                <p class="feat-desc">125cc OHV engine or 2000W brushless motor — raw, responsive power for every road.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+                </div>
+                <h3 class="feat-name">Long Battery Life</h3>
+                <p class="feat-desc">High-capacity lithium batteries deliver up to 80 km on a single charge — commute worry-free.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <h3 class="feat-name">Built for Pakistan</h3>
+                <p class="feat-desc">Tested on Pakistani roads. From Karachi heat to Islamabad hills — Zentaro handles it all.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </div>
+                <h3 class="feat-name">Affordable Pricing</h3>
+                <p class="feat-desc">Premium features without the premium price tag. World-class engineering at sensible prices.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3 class="feat-name">Service Network</h3>
+                <p class="feat-desc">Growing dealer network across Pakistan ensures you're never far from expert maintenance.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3 class="feat-name">Eco-Friendly Future</h3>
+                <p class="feat-desc">Zero-emission electric lineup. Save fuel costs, save the planet. Join the movement.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Script -->
-    <script src="script.js?v=2"></script>
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+    <div class="wrap">
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <span class="tag">Our Story</span>
+                <h2 class="about-title">Pakistan's <span class="grad">Next-Gen</span> Motorcycle Brand</h2>
+                <p class="about-desc">Zentaro was born from a vision — to bring world-class motorcycle engineering to Pakistan at prices that make sense. From our petrol-powered ZT 125 to our revolutionary ZE 2000 electric scooter — we're changing how Pakistan rides.</p>
+                <div class="about-counters">
+                    <div class="counter-box">
+                        <span class="counter-num"><span class="grad counter" data-target="2" data-suffix="">0</span></span>
+                        <span class="counter-lbl">Products</span>
+                    </div>
+                    <div class="counter-box">
+                        <span class="counter-num"><span class="grad counter" data-target="5" data-suffix="+">0</span></span>
+                        <span class="counter-lbl">Cities</span>
+                    </div>
+                    <div class="counter-box">
+                        <span class="counter-num"><span class="grad counter" data-target="100" data-suffix="%">0</span></span>
+                        <span class="counter-lbl">Quality Tested</span>
+                    </div>
+                </div>
+                <div class="about-badges">
+                    <div class="about-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Quality Assured
+                    </div>
+                    <div class="about-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                        After-Sales Support
+                    </div>
+                    <div class="about-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        Made for Pakistan
+                    </div>
+                </div>
+            </div>
+            <div class="about-img reveal">
+                <img src="images/about-lifestyle.png" alt="Zentaro lifestyle" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="reviews">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="tag">Reviews</span>
+            <h2 class="sec-title">What Riders Are <span class="grad">Saying</span></h2>
+        </div>
+    </div>
+    <div class="review-track">
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"The ZT 125 is a beast! Smooth ride, powerful engine, and the alloy wheels look amazing. Best bike in this price range."</p>
+            <div class="review-author">
+                <div class="review-avatar">AK</div>
+                <div><span class="review-name">Ahmed Khan</span><span class="review-city">Lahore</span></div>
+            </div>
+        </div>
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Switched to the ZE 2000 and saving thousands on fuel every month. The range is impressive for daily commute!"</p>
+            <div class="review-author">
+                <div class="review-avatar">SR</div>
+                <div><span class="review-name">Sara Rizvi</span><span class="review-city">Karachi</span></div>
+            </div>
+        </div>
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Build quality of the ZT 125 is outstanding. Chrome finish, disc brakes, and the paint — Zentaro knows bikes."</p>
+            <div class="review-author">
+                <div class="review-avatar">FA</div>
+                <div><span class="review-name">Fahad Ali</span><span class="review-city">Islamabad</span></div>
+            </div>
+        </div>
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"The electric scooter is perfect for Karachi traffic. Zero noise, zero emissions, and the design turns heads!"</p>
+            <div class="review-author">
+                <div class="review-avatar">MH</div>
+                <div><span class="review-name">Maria Hassan</span><span class="review-city">Karachi</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+    <div class="wrap">
+        <div class="contact-grid">
+            <div class="contact-left reveal">
+                <span class="tag">Get in Touch</span>
+                <h2 class="contact-title">Ready to <span class="grad">Ride?</span></h2>
+                <p class="contact-desc">Book a test ride, become a dealer, or just say hello. We'd love to hear from you.</p>
+                <div class="contact-cards">
+                    <a href="https://wa.me/923000000000?text=Hi%20Zentaro!%20I'm%20interested%20in%20your%20bikes." class="c-card wa" target="_blank">
+                        <div class="c-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        </div>
+                        <div>
+                            <span class="c-label">WhatsApp Us</span>
+                            <span class="c-value">Quick Response Guaranteed</span>
+                        </div>
+                    </a>
+                    <div class="c-card">
+                        <div class="c-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <span class="c-label">Call Us</span>
+                            <span class="c-value">+92 300 000 0000</span>
+                        </div>
+                    </div>
+                    <div class="c-card">
+                        <div class="c-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                        </div>
+                        <div>
+                            <span class="c-label">Email</span>
+                            <span class="c-value">info@zentaro.pk</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrap reveal">
+                <h3 class="form-heading">Book a Test Ride</h3>
+                <form id="contact-form" class="form-row">
+                    <div class="form-field">
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="tel" name="phone" placeholder="Phone Number (03XX XXXXXXX)" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="city" placeholder="Your City" required>
+                    </div>
+                    <div class="form-field">
+                        <select name="product" required>
+                            <option value="" disabled selected>Interested In</option>
+                            <option value="zt125">Zentaro ZT 125 (Petrol)</option>
+                            <option value="ze2000">Zentaro ZE 2000 (Electric)</option>
+                            <option value="both">Both Models</option>
+                            <option value="dealer">Become a Dealer</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <textarea name="message" placeholder="Any message (optional)" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-accent form-submit">
+                        <span>Submit Inquiry</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+                <div id="form-ok" class="form-success">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+                    <span>Thank you! We'll contact you shortly.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-logo">ZENTARO</span>
+                <p class="footer-desc">Pakistan's rising motorcycle brand. Petrol power meets electric innovation.</p>
+                <div class="socials">
+                    <a href="#" class="soc" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    <a href="#" class="soc" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="#" class="soc" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 9.71a8.5 8.5 0 00-.91-4.13 2.92 2.92 0 00-1.72-1A78.36 78.36 0 0012 4.27a78.45 78.45 0 00-8.34.3 2.87 2.87 0 00-1.46.74c-.9.83-1 2.25-1.1 3.45a48.29 48.29 0 000 6.48 9.55 9.55 0 00.3 2 3.14 3.14 0 00.71 1.36 2.86 2.86 0 001.49.78A45.18 45.18 0 0012 19.73a45.18 45.18 0 008.35-.37 2.86 2.86 0 001.49-.78 2.93 2.93 0 00.71-1.07 10.52 10.52 0 00.51-4.45c0-.16.01-.32 0-.48zM9.74 14.85V8.44l5.6 3.2-5.6 3.21z"/></svg></a>
+                    <a href="#" class="soc" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.18V11.2a4.85 4.85 0 01-2.65-.76 4.83 4.83 0 01-1.35-1.11V6.69h2z"/></svg></a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h4>Products</h4>
+                <a href="#zt-section">Zentaro ZT 125</a>
+                <a href="#ze-section">Zentaro ZE 2000</a>
+                <a href="#products">All Products</a>
+            </div>
+            <div class="foot-col">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="#features">Why Zentaro</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="foot-col">
+                <h4>Support</h4>
+                <a href="#contact">Book a Test Ride</a>
+                <a href="#contact">Become a Dealer</a>
+                <a href="#contact">Service Centers</a>
+                <a href="#contact">Warranty Info</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Zentaro Pakistan. All rights reserved.</p>
+            <p>Designed with ⚡ for Pakistan's roads.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating buttons -->
+<a href="https://wa.me/923000000000?text=Hi%20Zentaro!" class="wa-float" target="_blank" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+</a>
+
+<button class="btt" id="btt" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="script.js?v=5"></script>
 </body>
 </html>

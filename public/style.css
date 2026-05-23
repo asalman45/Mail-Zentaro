@@ -63,6 +63,8 @@ button { cursor:pointer }
 .sec-title { font-family:var(--h);font-size:clamp(2rem,5vw,4.5rem);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95 }
 .sec-title .serif { font-style:italic;font-weight:300;text-transform:none }
 .sec-desc { color:var(--text2);max-width:480px;margin-top:12px;line-height:1.75 }
+.accent { color:var(--accent) }
+.dot { width:6px;height:6px;background:var(--accent);border-radius:50%;animation:dotPulse 2.5s ease infinite;display:inline-block }
 
 .btn-primary { display:inline-flex;align-items:center;gap:10px;background:var(--text);color:var(--bg);padding:14px 32px;font-family:var(--h);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;transition:all .3s var(--ease) }
 .btn-primary:hover { background:var(--accent);color:#fff }
@@ -282,7 +284,7 @@ button { cursor:pointer }
 .savings-item { display:flex;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--border);font-size:.85rem }
 .savings-item span:first-child { color:var(--text2) }
 .savings-item span:last-child { font-family:var(--h);font-weight:700;font-variant-numeric:tabular-nums }
-.savings-total { padding:18px 28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:var(--h);font-weight:900;font-size:1rem;background:var(--bg2) }
+.savings-total { padding:18px 28px;display:flex;justify-content:space-between;font-family:var(--h);font-weight:900;font-size:1rem;background:var(--bg2) }
 .savings-vs { display:flex;align-items:center;justify-content:center;font-family:var(--h);font-size:1.2rem;font-weight:900;color:var(--text3);padding:0 24px;position:relative }
 .savings-vs::before { content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--border) }
 .savings-bottom { margin-top:48px;text-align:center }
@@ -301,6 +303,8 @@ button { cursor:pointer }
 .cta-content { position:relative;z-index:1;max-width:800px;padding:0 24px;display:flex;flex-direction:column;align-items:center;gap:20px }
 .cta-title { font-family:var(--h);font-size:clamp(3rem,10vw,8rem);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.85 }
 .cta-desc { color:var(--text2);font-size:1rem;line-height:1.7;max-width:500px }
+.cta-content .sec-label { display:inline-flex;align-items:center;gap:10px;color:var(--accent) }
+
 /* ═══ CONTACT ═══ */
 #contact { padding:120px 0 }
 .contact-layout { display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start }

@@ -182,5 +182,30 @@ document.addEventListener('DOMContentLoaded', () => {
     marquee.addEventListener('mouseleave', () => { marquee.style.animationPlayState = 'running'; });
   }
 
-  console.log('%c⚡ ZENTARO%c v5.2', 'background:#E11D48;color:#fff;font-weight:900;padding:4px 10px', 'background:#18181B;color:#A1A1AA;padding:4px 10px');
+  // 14. CURSOR GLOW ON FEATURE CARDS
+  $$('.feat-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // 15. STAGGER GRID REVEALS
+  $$('.feat-grid .feat-card, .products-grid .prod-card').forEach((el, i) => {
+    if (!el.dataset.delay) el.dataset.delay = i * 120;
+  });
+
+  // 16. DETAIL SECTION IMAGE HOVER GLOW
+  $$('.detail-visual').forEach(vis => {
+    vis.addEventListener('mousemove', e => {
+      const r = vis.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      vis.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(225,29,72,.04), transparent 60%), linear-gradient(160deg,#F0F0F2,#E8E8EB)`;
+    });
+    vis.addEventListener('mouseleave', () => { vis.style.background = ''; });
+  });
+
+  console.log('%c⚡ ZENTARO%c v5.3 — Polished', 'background:#E11D48;color:#fff;font-weight:900;padding:4px 10px', 'background:#18181B;color:#A1A1AA;padding:4px 10px');
 });

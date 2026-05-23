@@ -12,6 +12,11 @@
 </head>
 <body>
 
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scroll-progress"></div>
+<!-- Grain -->
+<div class="grain"></div>
+
 <!-- LOADER -->
 <div id="loader"><div class="loader-inner"><div class="loader-logo">ZENTARO</div><div class="loader-sub">Ride The Future</div><div class="loader-bar"><div class="loader-fill"></div></div></div></div>
 
@@ -42,8 +47,14 @@
 <section id="hero">
     <div class="hero-bg"><img src="images/hero-bg.png" alt="" loading="eager"></div>
     <div class="hero-overlay"></div>
+    <!-- Vertical sidebar text -->
+    <div class="hero-side-left">Zentaro · Ride The Future · 2026</div>
+    <div class="hero-side-right">Engineered in Pakistan</div>
+    <!-- HUD metadata -->
+    <div class="hero-hud-left"><span class="dot"></span> Live · Pakistan · Drive Mode: Sport</div>
+    <div class="hero-hud-right">System v2.0 · 2026</div>
     <div class="hero-inner">
-        <div class="hero-label reveal"><span class="dot"></span> Now Available · Pakistan 2026</div>
+        <div class="hero-label reveal"><span class="dot"></span> Now Reserving · 2026 Range</div>
         <h1 class="hero-title reveal">
             Ride the<br><span class="serif">Future.</span>
         </h1>
@@ -66,9 +77,11 @@
                     <span class="hero-stat-value"><span class="counter" data-target="80" data-suffix="">0</span><span class="hero-stat-unit">km</span></span>
                 </div>
             </div>
-            <a href="#products" class="btn-primary hero-cta">Explore Models →</a>
+            <a href="#products" class="btn-primary hero-cta">Configure Yours →</a>
         </div>
     </div>
+    <!-- Scroll indicator -->
+    <div class="scroll-hint"><span>Scroll</span><span class="scroll-line"></span></div>
 </section>
 
 <!-- MARQUEE -->
@@ -160,6 +173,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ PARALLAX BREAK ═══ -->
+<section class="parallax-break">
+    <div class="parallax-bg"><img src="images/about-lifestyle.png" alt="Zentaro lifestyle" loading="lazy"></div>
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content">
+        <div class="sec-label reveal">/ Made in Pakistan</div>
+        <h2 class="parallax-title reveal">Built here.<br><span class="serif accent">For here.</span></h2>
+        <div class="parallax-stats reveal">
+            <div class="pstat"><span class="pstat-num counter" data-target="100" data-suffix="%">0</span><span class="pstat-lbl">Quality Tested</span></div>
+            <div class="pstat"><span class="pstat-num counter" data-target="5" data-suffix="+">0</span><span class="pstat-lbl">Cities Served</span></div>
+            <div class="pstat"><span class="pstat-num counter" data-target="2" data-suffix="">0</span><span class="pstat-lbl">Year Warranty</span></div>
         </div>
     </div>
 </section>

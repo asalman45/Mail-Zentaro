@@ -14,13 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { if (loader) loader.classList.add('done'); }, 3000);
   }
 
-  // 2. NAVBAR
+  // 2. NAVBAR + SCROLL PROGRESS
   const nav = $('#nav');
-  if (nav) {
-    const tick = () => nav.classList.toggle('scrolled', window.scrollY > 50);
-    window.addEventListener('scroll', tick, { passive: true });
-    tick();
-  }
+  const prog = $('#scroll-progress');
+  const onScroll = () => {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+    if (prog) {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   // 3. MOBILE MENU
   const burger = $('.hamburger');
@@ -156,5 +161,26 @@ document.addEventListener('DOMContentLoaded', () => {
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  console.log('%c⚡ ZENTARO%c v5.0 — Editorial', 'background:#E11D48;color:#fff;font-weight:900;padding:4px 10px', 'background:#18181B;color:#A1A1AA;padding:4px 10px');
+  // 12. PARALLAX BREAK IMAGE
+  const pxBg = document.querySelector('.parallax-bg img');
+  if (pxBg) {
+    window.addEventListener('scroll', () => {
+      const sec = pxBg.closest('.parallax-break');
+      if (!sec) return;
+      const r = sec.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) {
+        const ratio = (window.innerHeight - r.top) / (window.innerHeight + r.height);
+        pxBg.style.transform = `translateY(${(ratio - 0.5) * -60}px) scale(1.15)`;
+      }
+    }, { passive: true });
+  }
+
+  // 13. MARQUEE PAUSE ON HOVER
+  const marquee = $('.marquee-track');
+  if (marquee) {
+    marquee.addEventListener('mouseenter', () => { marquee.style.animationPlayState = 'paused'; });
+    marquee.addEventListener('mouseleave', () => { marquee.style.animationPlayState = 'running'; });
+  }
+
+  console.log('%c⚡ ZENTARO%c v5.2', 'background:#E11D48;color:#fff;font-weight:900;padding:4px 10px', 'background:#18181B;color:#A1A1AA;padding:4px 10px');
 });

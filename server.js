@@ -48,23 +48,7 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Serve admin panel (no-cache for dev)
-app.use(express.static(path.join(__dirname, 'public'), { 
-    etag: false, 
-    maxAge: 0,
-    setHeaders: (res) => {
-        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
-        res.setHeader('Pragma', 'no-cache');
-    }
-}));
-app.get('*', (req, res) => {
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ error: 'API route not found' });
-    }
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 app.listen(PORT, () => {
     console.log(`🚀 Zentaro Email Server running on port ${PORT}`);
-    console.log(`📧 Admin panel: http://localhost:${PORT}`);
+    console.log(`📧 Mail API: http://localhost:${PORT}/api`);
 });

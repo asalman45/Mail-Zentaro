@@ -4,7 +4,7 @@
   "description": "Email management server for zentaro.pk",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "pm2-runtime start server.js -i max",
     "dev": "node server.js"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "mailparser": "^3.7.1",
     "mongoose": "^8.2.0",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.8"
+    "nodemailer": "^6.9.8",
+    "pm2": "^5.3.0"
   }
 }

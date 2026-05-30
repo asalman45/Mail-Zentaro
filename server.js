@@ -26,6 +26,9 @@ const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 app.use('/uploads', express.static(uploadsDir));
 
+// Static files for client dashboard
+app.use(express.static(path.join(__dirname, 'public')));
+
 // ── MongoDB Connection ──
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zentaro-email')
     .then(() => console.log('✅ MongoDB connected for Zentaro Email'))
@@ -46,6 +49,14 @@ app.get('/api/health', (req, res) => {
         uptime: process.uptime(),
         mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
     });
+});
+
+// Catch-all route to serve the client dashboard
+app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads') || req.path.includes('.')) {
+        return next();
+    }
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {

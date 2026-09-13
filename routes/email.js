@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const { simpleParser } = require('mailparser');
 const multer = require('multer');
@@ -72,7 +73,9 @@ router.get('/messages', authenticate, async (req, res) => {
         const { accountId, folder = 'inbox', search } = req.query;
         let query = {};
 
-        if (accountId) query.accountId = accountId;
+        if (accountId && mongoose.Types.ObjectId.isValid(accountId)) {
+            query.accountId = new mongoose.Types.ObjectId(accountId);
+        }
 
         switch (folder) {
             case 'sent':
@@ -81,18 +84,22 @@ router.get('/messages', authenticate, async (req, res) => {
                 break;
             case 'starred':
                 query.starred = true;
-                query.status = { $ne: 'archived' };
+                query.status = { $nin: ['archived', 'deleted'] };
                 break;
             case 'archive':
             case 'archived':
                 query.status = 'archived';
+                break;
+            case 'trash':
+            case 'deleted':
+                query.status = 'deleted';
                 break;
             case 'drafts':
                 query.status = 'draft';
                 break;
             default:
                 query.direction = 'inbound';
-                query.status = { $ne: 'archived' };
+                query.status = { $nin: ['archived', 'deleted'] };
         }
 
         const limit = parseInt(req.query.limit) || 50;
@@ -107,14 +114,24 @@ router.get('/messages', authenticate, async (req, res) => {
             ];
         }
 
-        const messages = await EmailMessage.find(query)
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit)
-            .lean();
+        const [messages, total] = await Promise.all([
+            EmailMessage.find(query)
+                .populate('accountId', 'email name')
+                .sort({ createdAt: -1 })
+                .skip(skip)
+                .limit(limit)
+                .lean(),
+            EmailMessage.countDocuments(query)
+        ]);
 
-        const total = await EmailMessage.countDocuments(query);
-        res.json({ success: true, count: messages.length, total, data: messages });
+        res.json({
+            success: true,
+            total,
+            count: messages.length,
+            skip,
+            limit,
+            data: messages
+        });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
@@ -218,11 +235,29 @@ router.post('/send', authenticate, upload.array('attachments'), async (req, res)
 // Star / Unstar
 router.put('/messages/:id/star', authenticate, async (req, res) => {
     try {
+        const { starred } = req.body;
         const msg = await EmailMessage.findById(req.params.id);
-        if (!msg) return res.status(404).json({ error: 'Not found' });
-        msg.starred = !msg.starred;
+        if (!msg) return res.status(404).json({ success: false, error: 'Not found' });
+        msg.starred = typeof starred === 'boolean' ? starred : !msg.starred;
         await msg.save();
         res.json({ success: true, data: msg });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Mark Read / Unread
+router.put('/messages/:id/read', authenticate, async (req, res) => {
+    try {
+        const { read = true } = req.body;
+        const message = await EmailMessage.findById(req.params.id);
+        if (!message) return res.status(404).json({ success: false, error: 'Message not found' });
+
+        message.status = read ? 'read' : 'received';
+        if (read) message.readAt = new Date();
+        await message.save();
+
+        res.json({ success: true, data: message });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
@@ -233,7 +268,7 @@ router.put('/messages/:id/archive', authenticate, async (req, res) => {
     try {
         const { archived = true } = req.body;
         const msg = await EmailMessage.findById(req.params.id);
-        if (!msg) return res.status(404).json({ error: 'Not found' });
+        if (!msg) return res.status(404).json({ success: false, error: 'Not found' });
         msg.status = archived ? 'archived' : 'received';
         await msg.save();
         res.json({ success: true, data: msg });
@@ -242,32 +277,262 @@ router.put('/messages/:id/archive', authenticate, async (req, res) => {
     }
 });
 
-// Delete
+// Delete (Move to Trash, or permanent delete if already in Trash or ?permanent=true)
 router.delete('/messages/:id', authenticate, async (req, res) => {
     try {
-        await EmailMessage.findByIdAndDelete(req.params.id);
-        res.json({ success: true });
+        const message = await EmailMessage.findById(req.params.id);
+        if (!message) return res.status(404).json({ success: false, error: 'Message not found' });
+
+        if (message.status === 'deleted' || req.query.permanent === 'true') {
+            await EmailMessage.findByIdAndDelete(req.params.id);
+            res.json({ success: true, message: 'Message permanently deleted', permanent: true });
+        } else {
+            message.status = 'deleted';
+            await message.save();
+            res.json({ success: true, message: 'Message moved to Trash', permanent: false });
+        }
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
 });
 
-// Stats
+// Restore Message from Trash
+router.put('/messages/:id/restore', authenticate, async (req, res) => {
+    try {
+        const message = await EmailMessage.findById(req.params.id);
+        if (!message) return res.status(404).json({ success: false, error: 'Message not found' });
+
+        message.status = 'received';
+        await message.save();
+        res.json({ success: true, message: 'Message restored to Inbox', data: message });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Bulk Message Actions
+router.post('/messages/bulk', authenticate, async (req, res) => {
+    try {
+        const { messageIds, action, value } = req.body;
+        if (!Array.isArray(messageIds) || messageIds.length === 0) {
+            return res.status(400).json({ success: false, error: 'messageIds must be a non-empty array' });
+        }
+
+        const validIds = messageIds
+            .filter(id => mongoose.Types.ObjectId.isValid(id))
+            .map(id => new mongoose.Types.ObjectId(id));
+
+        if (validIds.length === 0) {
+            return res.status(400).json({ success: false, error: 'No valid message IDs provided' });
+        }
+
+        let updateResult;
+        switch (action) {
+            case 'markRead':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { status: 'read', readAt: new Date() } }
+                );
+                break;
+            case 'markUnread':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { status: 'received' } }
+                );
+                break;
+            case 'star':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { starred: value !== false } }
+                );
+                break;
+            case 'unstar':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { starred: false } }
+                );
+                break;
+            case 'archive':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { status: 'archived' } }
+                );
+                break;
+            case 'unarchive':
+            case 'restore':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { status: 'received' } }
+                );
+                break;
+            case 'delete':
+                updateResult = await EmailMessage.updateMany(
+                    { _id: { $in: validIds } },
+                    { $set: { status: 'deleted' } }
+                );
+                break;
+            case 'permanentDelete':
+                updateResult = await EmailMessage.deleteMany(
+                    { _id: { $in: validIds } }
+                );
+                break;
+            default:
+                return res.status(400).json({ success: false, error: `Unsupported action: ${action}` });
+        }
+
+        res.json({ success: true, action, affectedCount: updateResult.modifiedCount || updateResult.deletedCount || 0 });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Stats (Comprehensive for Webmail & Dashboard)
 router.get('/stats', authenticate, async (req, res) => {
     try {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
+        const { accountId } = req.query;
 
-        const unread = await EmailMessage.countDocuments({ direction: 'inbound', status: 'received' });
-        const totalInbox = await EmailMessage.countDocuments({ direction: 'inbound', status: { $ne: 'archived' } });
-        const sentToday = await EmailMessage.countDocuments({
-            direction: 'outbound', status: 'sent', sentAt: { $gte: today }
+        let extraFilter = {};
+        if (accountId && mongoose.Types.ObjectId.isValid(accountId)) {
+            extraFilter.accountId = new mongoose.Types.ObjectId(accountId);
+        }
+
+        const unreadByAccount = await EmailMessage.aggregate([
+            { $match: { direction: 'inbound', status: 'received' } },
+            { $group: { _id: '$accountId', count: { $sum: 1 } } }
+        ]);
+
+        const unread = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'inbound',
+            status: 'received'
         });
-        const totalSent = await EmailMessage.countDocuments({ direction: 'outbound', status: 'sent' });
-        const starred = await EmailMessage.countDocuments({ starred: true, status: { $ne: 'archived' } });
-        const archived = await EmailMessage.countDocuments({ status: 'archived' });
+        const totalInbox = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'inbound',
+            status: { $nin: ['archived', 'deleted'] }
+        });
+        const sentToday = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'outbound',
+            status: 'sent',
+            sentAt: { $gte: today }
+        });
+        const totalSent = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'outbound',
+            status: 'sent'
+        });
+        const starred = await EmailMessage.countDocuments({
+            ...extraFilter,
+            starred: true,
+            status: { $nin: ['archived', 'deleted'] }
+        });
+        const archived = await EmailMessage.countDocuments({
+            ...extraFilter,
+            status: 'archived'
+        });
+        const trash = await EmailMessage.countDocuments({
+            ...extraFilter,
+            status: 'deleted'
+        });
+        const drafts = await EmailMessage.countDocuments({
+            ...extraFilter,
+            status: 'draft'
+        });
 
-        res.json({ success: true, unread, totalInbox, sentToday, totalSent, starred, archived });
+        res.json({
+            success: true,
+            unread,
+            unreadByAccount,
+            totalInbox,
+            sentToday,
+            totalSent,
+            starred,
+            archived,
+            trash,
+            drafts
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+router.get('/stats/mailbox', authenticate, async (req, res) => {
+    try {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const { accountId } = req.query;
+
+        const unreadByAccount = await EmailMessage.aggregate([
+            { $match: { direction: 'inbound', status: 'received' } },
+            { $group: { _id: '$accountId', count: { $sum: 1 } } }
+        ]);
+
+        let extraFilter = {};
+        if (accountId && mongoose.Types.ObjectId.isValid(accountId)) {
+            extraFilter.accountId = new mongoose.Types.ObjectId(accountId);
+        }
+
+        const sentToday = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'outbound',
+            status: 'sent',
+            sentAt: { $gte: today }
+        });
+
+        const totalSent = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'outbound',
+            status: 'sent'
+        });
+
+        const starredCount = await EmailMessage.countDocuments({
+            ...extraFilter,
+            starred: true,
+            status: { $nin: ['archived', 'deleted'] }
+        });
+
+        const draftsCount = await EmailMessage.countDocuments({
+            ...extraFilter,
+            status: 'draft'
+        });
+
+        const trashCount = await EmailMessage.countDocuments({
+            ...extraFilter,
+            status: 'deleted'
+        });
+
+        const archiveCount = await EmailMessage.countDocuments({
+            ...extraFilter,
+            status: 'archived'
+        });
+
+        const totalInbox = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'inbound',
+            status: { $nin: ['archived', 'deleted'] }
+        });
+
+        const unreadCount = await EmailMessage.countDocuments({
+            ...extraFilter,
+            direction: 'inbound',
+            status: 'received'
+        });
+
+        res.json({
+            success: true,
+            unread: unreadByAccount,
+            unreadCount,
+            totalInbox,
+            sentToday,
+            totalSent,
+            starred: starredCount,
+            drafts: draftsCount,
+            trash: trashCount,
+            archive: archiveCount
+        });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }

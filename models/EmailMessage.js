@@ -14,7 +14,7 @@ const emailMessageSchema = new mongoose.Schema({
         size: Number
     }],
     direction: { type: String, enum: ['inbound', 'outbound'], required: true },
-    status: { type: String, enum: ['draft', 'sent', 'failed', 'received', 'read', 'archived'], default: 'draft' },
+    status: { type: String, enum: ['draft', 'sent', 'failed', 'received', 'read', 'archived', 'deleted'], default: 'draft' },
     starred: { type: Boolean, default: false },
     messageId: String,
     threadId: String,

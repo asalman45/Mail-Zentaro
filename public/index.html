@@ -1,44 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zentaro Mail - Admin Panel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zentaro Mail | Official Mail Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="loginScreen" class="login-screen">
-<div class="login-card">
-<div class="login-logo"><div class="logo-icon">Z</div><h1>Zentaro Mail</h1><p>Admin Panel</p></div>
-<form id="loginForm">
-<div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="admin@zentaro.pk" required></div>
-<div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••" required></div>
-<button type="submit" class="btn-primary" id="loginBtn">Sign In</button>
-<p id="loginError" class="error-text"></p>
-</form></div></div>
-<div id="mainApp" class="main-app" style="display:none">
-<aside class="sidebar">
-<div class="sidebar-header"><div class="logo-icon small">Z</div><span class="logo-text">Zentaro Mail</span></div>
-<button class="btn-compose" onclick="openCompose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg><span>Compose</span></button>
-<nav class="sidebar-nav">
-<a href="#" class="nav-item active" data-folder="inbox" onclick="loadFolder('inbox',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-6l-2 3H10l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg><span>Inbox</span><span class="badge" id="unreadBadge" style="display:none">0</span></a>
-<a href="#" class="nav-item" data-folder="sent" onclick="loadFolder('sent',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg><span>Sent</span></a>
-<a href="#" class="nav-item" data-folder="starred" onclick="loadFolder('starred',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Starred</span></a>
-<a href="#" class="nav-item" data-folder="archive" onclick="loadFolder('archive',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archive</span></a>
-</nav>
-<div class="sidebar-section"><h4>Accounts</h4><div id="accountsList"></div><button class="btn-add-account" onclick="openAccountModal()">+ Add Account</button></div>
-<div class="sidebar-footer"><button class="btn-logout" onclick="logout()">Sign Out</button></div>
-</aside>
-<main class="email-list-panel">
-<div class="list-header"><h2 id="folderTitle">Inbox</h2><div class="search-bar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="searchInput" placeholder="Search emails..." oninput="debounceSearch()"></div></div>
-<div id="emailList" class="email-list"><div class="empty-state"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M22 12h-6l-2 3H10l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg><p>No emails yet</p></div></div>
-</main>
-<section class="email-detail-panel" id="detailPanel"><div class="detail-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg><p>Select an email to read</p></div></section>
-</div>
-<div id="composeModal" class="modal" style="display:none"><div class="modal-content compose-modal"><div class="modal-header"><h3>New Message</h3><button class="btn-close" onclick="closeCompose()">&times;</button></div><form id="composeForm" onsubmit="sendEmail(event)"><div class="compose-field"><label>From</label><select id="composeFrom" required></select></div><div class="compose-field"><label>To</label><input type="text" id="composeTo" placeholder="recipient@example.com" required></div><div class="compose-field"><label>Subject</label><input type="text" id="composeSubject" placeholder="Subject"></div><div class="compose-body"><textarea id="composeContent" placeholder="Write your message..." rows="12"></textarea></div><div class="compose-actions"><button type="submit" class="btn-primary" id="sendBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send</button><button type="button" class="btn-secondary" onclick="closeCompose()">Discard</button></div></form></div></div>
-<div id="accountModal" class="modal" style="display:none"><div class="modal-content"><div class="modal-header"><h3 id="accountModalTitle">Add Email Account</h3><button class="btn-close" onclick="closeAccountModal()">&times;</button></div><form id="accountForm" onsubmit="saveAccount(event)" style="padding:20px 24px"><div class="form-group"><label>Email Address</label><input type="email" id="accEmail" placeholder="admin@zentaro.pk" required></div><div class="form-group"><label>Display Name</label><input type="text" id="accName" placeholder="Zentaro Admin" required></div><div class="form-group"><label>SMTP Host</label><input type="text" id="accSmtpHost" value="smtp-relay.brevo.com"></div><div class="form-group"><label>SMTP Port</label><input type="number" id="accSmtpPort" value="587"></div><div class="form-group"><label>SMTP Username</label><input type="text" id="accSmtpUser" placeholder="login@smtp-brevo.com"></div><div class="form-group"><label>SMTP Password</label><input type="password" id="accSmtpPass" placeholder="SMTP password"></div><div class="compose-actions"><button type="submit" class="btn-primary">Save Account</button><button type="button" class="btn-secondary" onclick="closeAccountModal()">Cancel</button></div></form></div></div>
-<div id="toast" class="toast"></div>
-<script src="app.js"></script>
-</body></html>
+
+    <!-- ── AUTH / LOGIN SCREEN ── -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <div class="logo-icon">Z</div>
+                <h1>Zentaro Mail</h1>
+                <p>Official Mail Workspace • mail.zentaro.pk</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="admin@zentaro.pk" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••••••" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn-primary" id="loginBtn">
+                    <span>Sign In to Mail</span>
+                </button>
+                <p id="loginError" class="error-text"></p>
+            </form>
+            <div class="login-footer">
+                <span>Protected by Zentaro Secure Gateway</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MAIN APPLICATION ── -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- TOP UNIFIED HEADER (Google Workspace / Gmail Style) -->
+        <header class="top-header">
+            <!-- Left: Brand & Sidebar Toggle -->
+            <div class="header-left">
+                <button class="icon-btn" id="toggleSidebarBtn" title="Toggle Sidebar" onclick="toggleSidebar()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <div class="brand-badge">
+                    <div class="brand-logo">Z</div>
+                    <div class="brand-info">
+                        <div class="brand-title">
+                            <span class="brand-name">ZENTARO</span>
+                            <span class="pill-badge">WEBMAIL</span>
+                        </div>
+                        <span class="brand-sub">mail.zentaro.pk</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center: Wide Search Bar -->
+            <div class="header-center">
+                <div class="search-container">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="searchInput" placeholder="Search in mail by sender, subject, or content..." oninput="handleSearchInput()" autocomplete="off">
+                    <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display: none;" title="Clear search">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                    <span class="search-shortcut-badge" id="searchKeyBadge">/</span>
+                </div>
+            </div>
+
+            <!-- Right: Status, Refresh & User -->
+            <div class="header-right">
+                <div class="sync-status" title="Mailbox connection active">
+                    <span class="sync-dot"></span>
+                    <span class="sync-text">All Synced</span>
+                </div>
+                <button class="icon-btn" id="refreshBtn" onclick="refreshMailbox()" title="Refresh Mailbox">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </button>
+                <div class="user-chip">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <span class="user-name" id="userName">Admin</span>
+                    <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </div>
+                <button class="btn-signout" onclick="logout()" title="Sign Out">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    <span class="signout-text">Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- WORKSPACE 3-COLUMN BODY -->
+        <div class="workspace-body">
+            <!-- ── LEFT SIDEBAR ── -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Compose Trigger Button -->
+                <div class="sidebar-compose-wrap">
+                    <button class="btn-compose" onclick="openCompose()" title="Compose new email (C)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        <span class="compose-label">Compose</span>
+                    </button>
+                </div>
+
+                <!-- Account Switcher Dropdown Trigger -->
+                <div class="account-switcher-wrap">
+                    <button class="account-switcher-btn" id="accountSwitcherBtn" onclick="toggleAccountDropdown()">
+                        <div class="acc-selected-info">
+                            <span class="acc-color-dot" id="activeAccountDot" style="background:#6366f1;"></span>
+                            <span class="acc-selected-name" id="activeAccountName">All Accounts</span>
+                        </div>
+                        <svg class="chevron-icon" id="accDropdownChevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <!-- Account Switcher Menu -->
+                    <div class="account-dropdown-menu" id="accountDropdownMenu" style="display: none;">
+                        <button class="account-menu-item active" onclick="selectAccount(null)">
+                            <div class="acc-item-left">
+                                <span class="acc-badge-all">All</span>
+                                <span>All Accounts</span>
+                            </div>
+                            <span class="acc-unread-pill" id="allAccUnreadPill">0</span>
+                        </button>
+                        <div id="accountsDropdownList"></div>
+                    </div>
+                </div>
+
+                <!-- Navigation Folders -->
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-folder="inbox" onclick="loadFolder('inbox', event)">
+                        <div class="nav-item-left">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+                            <span class="nav-label">Inbox</span>
+                        </div>
+                        <span class="nav-badge" id="badge-inbox" style="display: none;">0</span>
+                    </a>
+                    <a href="#" class="nav-item" data-folder="starred" onclick="loadFolder('starred', event)">
+                        <div class="nav-item-left">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <span class="nav-label">Starred</span>
+                        </div>
+                        <span class="nav-badge" id="badge-starred" style="display: none;">0</span>
+                    </a>
+                    <a href="#" class="nav-item" data-folder="sent" onclick="loadFolder('sent', event)">
+                        <div class="nav-item-left">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            <span class="nav-label">Sent</span>
+                        </div>
+                        <span class="nav-badge" id="badge-sent" style="display: none;">0</span>
+                    </a>
+                    <a href="#" class="nav-item" data-folder="drafts" onclick="loadFolder('drafts', event)">
+                        <div class="nav-item-left">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+                            <span class="nav-label">Drafts</span>
+                        </div>
+                        <span class="nav-badge" id="badge-drafts" style="display: none;">0</span>
+                    </a>
+                    <a href="#" class="nav-item" data-folder="archive" onclick="loadFolder('archive', event)">
+                        <div class="nav-item-left">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                            <span class="nav-label">Archive</span>
+                        </div>
+                        <span class="nav-badge" id="badge-archive" style="display: none;">0</span>
+                    </a>
+                    <a href="#" class="nav-item" data-folder="trash" onclick="loadFolder('trash', event)">
+                        <div class="nav-item-left">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                            <span class="nav-label">Trash</span>
+                        </div>
+                        <span class="nav-badge" id="badge-trash" style="display: none;">0</span>
+                    </a>
+                </nav>
+
+                <!-- Sidebar Footer -->
+                <div class="sidebar-footer">
+                    <div class="sidebar-status">
+                        <span class="status-indicator"></span>
+                        <span class="status-text" id="sidebarStatusText">Ready</span>
+                    </div>
+                    <button class="btn-settings-toggle" onclick="openAccountsModal()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        <span class="settings-label">Mailbox Settings</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- ── MIDDLE COLUMN: EMAIL LIST ── -->
+            <section class="email-list-panel" id="emailListPanel">
+                <!-- Top Toolbar: Multi-select & Bulk Actions & Pagination -->
+                <div class="list-toolbar">
+                    <div class="toolbar-left">
+                        <label class="checkbox-container" title="Select all on current page">
+                            <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <!-- Regular Title / Count -->
+                        <div class="toolbar-title-wrap" id="toolbarNormalTitle">
+                            <h3 id="folderHeading">Inbox</h3>
+                            <span class="total-count-pill" id="folderTotalCount">0</span>
+                        </div>
+
+                        <!-- Bulk Actions Toolbar (Visible when 1+ selected) -->
+                        <div class="bulk-toolbar" id="bulkToolbar" style="display: none;">
+                            <span class="selected-count-label" id="selectedCountLabel">0 selected</span>
+                            <div class="bulk-divider"></div>
+                            <button class="bulk-btn" onclick="executeBulkAction('markRead')" title="Mark as Read">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h9"/><polyline points="22,6 12,13 2,6"/><polyline points="16 19 19 22 23 18"/></svg>
+                            </button>
+                            <button class="bulk-btn" onclick="executeBulkAction('markUnread')" title="Mark as Unread">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </button>
+                            <button class="bulk-btn" onclick="executeBulkAction('star')" title="Star selected">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </button>
+                            <span id="bulkArchiveButtons">
+                                <button class="bulk-btn" onclick="executeBulkAction('archive')" title="Archive">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                                </button>
+                                <button class="bulk-btn bulk-danger" onclick="executeBulkAction('delete')" title="Move to Trash">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                </button>
+                            </span>
+                            <span id="bulkTrashButtons" style="display: none;">
+                                <button class="bulk-btn" onclick="executeBulkAction('restore')" title="Restore to Inbox">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                                </button>
+                                <button class="bulk-btn bulk-danger" onclick="executeBulkAction('permanentDelete')" title="Permanently Delete">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right Pagination -->
+                    <div class="toolbar-right">
+                        <span class="pagination-info" id="paginationRange">0–0 of 0</span>
+                        <div class="pagination-buttons">
+                            <button class="icon-btn-sm" id="prevPageBtn" onclick="prevPage()" disabled title="Previous page">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <button class="icon-btn-sm" id="nextPageBtn" onclick="nextPage()" disabled title="Next page">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs-bar">
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter="all" onclick="setFilter('all', this)">All</button>
+                        <button class="filter-pill" data-filter="unread" onclick="setFilter('unread', this)">
+                            Unread <span class="pill-count" id="unreadFilterCount" style="display:none;">0</span>
+                        </button>
+                        <button class="filter-pill" data-filter="starred" onclick="setFilter('starred', this)">Starred</button>
+                        <button class="filter-pill" data-filter="attachments" onclick="setFilter('attachments', this)">Attachments</button>
+                    </div>
+                    <button class="btn-empty-trash" id="emptyTrashBtn" onclick="emptyTrash()" style="display: none;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+                        Empty Trash
+                    </button>
+                </div>
+
+                <!-- Messages List Container -->
+                <div class="email-list" id="emailList">
+                    <div class="list-loading-state">
+                        <span class="spinner"></span>
+                        <p>Loading messages...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── RIGHT COLUMN: READING PANE ── -->
+            <section class="email-detail-panel" id="detailPanel">
+                <!-- Detail placeholder when no message is selected -->
+                <div class="detail-placeholder" id="detailPlaceholder">
+                    <div class="empty-icon-wrap">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <h3>Select an email to read</h3>
+                    <p>Choose a message from your mailbox to view its full conversation and attachments.</p>
+                    <div class="shortcuts-guide">
+                        <span class="guide-item"><kbd>C</kbd> Compose</span>
+                        <span class="guide-item"><kbd>J</kbd>/<kbd>K</kbd> Navigate</span>
+                        <span class="guide-item"><kbd>S</kbd> Star</span>
+                        <span class="guide-item"><kbd>E</kbd> Archive</span>
+                        <span class="guide-item"><kbd>#</kbd> Delete</span>
+                        <span class="guide-item"><kbd>/</kbd> Search</span>
+                    </div>
+                </div>
+
+                <!-- Message Detail Active View (Populated dynamically) -->
+                <div class="detail-content" id="detailContent" style="display: none;"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ── DOCKED FLOATING COMPOSE WINDOW (Multitasking) ── -->
+    <div class="docked-compose" id="dockedCompose" style="display: none;">
+        <div class="compose-header" id="composeHeader">
+            <span class="compose-title" id="composeTitle">New Message</span>
+            <div class="compose-window-controls">
+                <button class="win-btn" onclick="toggleMinimizeCompose()" title="Minimize">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+                <button class="win-btn" onclick="toggleMaximizeCompose()" title="Maximize / Restore">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                </button>
+                <button class="win-btn close-btn" onclick="closeCompose()" title="Close draft">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <form class="compose-form" id="composeForm" onsubmit="handleSendCompose(event)">
+            <!-- From selector -->
+            <div class="compose-row">
+                <label for="composeFrom">From</label>
+                <select id="composeFrom" required></select>
+            </div>
+            <!-- To field with Cc/Bcc triggers -->
+            <div class="compose-row">
+                <label for="composeTo">To</label>
+                <div class="input-with-actions">
+                    <input type="text" id="composeTo" placeholder="recipient@example.com" required>
+                    <div class="field-toggles">
+                        <button type="button" class="toggle-text-btn" onclick="toggleComposeField('composeCcRow')">Cc</button>
+                        <button type="button" class="toggle-text-btn" onclick="toggleComposeField('composeBccRow')">Bcc</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Cc field (collapsible) -->
+            <div class="compose-row" id="composeCcRow" style="display: none;">
+                <label for="composeCc">Cc</label>
+                <input type="text" id="composeCc" placeholder="cc@example.com">
+            </div>
+            <!-- Bcc field (collapsible) -->
+            <div class="compose-row" id="composeBccRow" style="display: none;">
+                <label for="composeBcc">Bcc</label>
+                <input type="text" id="composeBcc" placeholder="bcc@example.com">
+            </div>
+            <!-- Subject field -->
+            <div class="compose-row">
+                <label for="composeSubject">Subject</label>
+                <input type="text" id="composeSubject" placeholder="Subject" autocomplete="off">
+            </div>
+            <!-- Compose Body -->
+            <div class="compose-editor-body">
+                <textarea id="composeContent" placeholder="Write your message here..." rows="12"></textarea>
+            </div>
+            <!-- Attachments preview -->
+            <div class="compose-attachments-preview" id="composeAttachmentsPreview" style="display: none;"></div>
+            <!-- Compose Bottom Actions Bar -->
+            <div class="compose-bottom-bar">
+                <div class="bottom-left-actions">
+                    <button type="submit" class="btn-send-primary" id="composeSendBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        <span>Send</span>
+                    </button>
+                    <label class="btn-attach" title="Attach files">
+                        <input type="file" id="composeFileInput" multiple onchange="handleComposeFileSelect(event)" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                    </label>
+                </div>
+                <button type="button" class="btn-discard" onclick="closeCompose()" title="Discard draft">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ── MAILBOX ACCOUNTS SETTINGS MODAL ── -->
+    <div id="accountsModal" class="modal-backdrop" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div>
+                    <h3>Mailbox Configuration</h3>
+                    <p class="modal-subtitle">Manage connected @zentaro.pk email routing and accounts</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeAccountsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="connected-accounts-section">
+                    <h4>Connected Accounts</h4>
+                    <div class="accounts-settings-list" id="accountsSettingsList"></div>
+                </div>
+
+                <form id="addAccountForm" onsubmit="handleSaveAccount(event)">
+                    <h4>Add / Edit Domain Account</h4>
+                    <input type="hidden" id="editAccountId" value="">
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label>Account Display Name</label>
+                            <input type="text" id="accName" placeholder="Zentaro Support" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="accEmail" placeholder="support@zentaro.pk" required>
+                        </div>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label>SMTP Host</label>
+                            <input type="text" id="accSmtpHost" value="smtp-relay.brevo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>SMTP Port</label>
+                            <input type="number" id="accSmtpPort" value="587" required>
+                        </div>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label>SMTP Username</label>
+                            <input type="text" id="accSmtpUser" placeholder="Optional or Brevo Login">
+                        </div>
+                        <div class="form-group">
+                            <label>SMTP Password</label>
+                            <input type="password" id="accSmtpPass" placeholder="Optional or Brevo Pass">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Forward Inbound Copies To (Optional)</label>
+                        <input type="email" id="accForward" placeholder="personal@example.com">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn-primary" id="saveAccountBtn">Save Account</button>
+                        <button type="button" class="btn-secondary" onclick="closeAccountsModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── TOAST NOTIFICATION CONTAINER ── -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- ── APPLICATION SCRIPTS ── -->
+    <script src="app.js"></script>
+</body>
+</html>
